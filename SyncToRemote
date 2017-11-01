@@ -1,0 +1,14 @@
+#!/bin/sh 
+#https://songyichao.com/%E4%BD%BF%E7%94%A8rsync%E5%90%8C%E6%AD%A5%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E5%88%B0%E5%BC%80%E5%8F%91%E6%9C%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/
+#http://blog.csdn.net/jerome_s/article/details/48014673
+#https://segmentfault.com/a/1190000005053788
+
+localpath=.
+remoteaddress="ccwf2006@172.96.207.153::data1"
+secfile="rsync_data1.secrets"
+fswatch $localpath|while read file
+do
+rsync -aztP --exclude=".*" --password-file=$secfile --delete $localpath ccwf2006@172.96.207.153::data1
+echo "Watching File Changes!"
+done
+
